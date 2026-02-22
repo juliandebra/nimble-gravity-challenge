@@ -27,6 +27,7 @@ const JobItem: React.FC<JobItemProps> = ({ job, candidate }) => {
       const payload: ApplyPayload = {
         uuid: candidate.uuid,
         candidateId: candidate.candidateId,
+        applicationId: candidate.applicationId,
         jobId: job.id,
         repoUrl,
       }
