@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# Nimble Gravity Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web application developed as part of a technical challenge for **Nimble Gravity**. The platform allows users to view candidate information, list open job positions, and submit applications using GitHub repository URLs, all wrapped in a modern and optimized UI/UX.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19**: Core library for the user interface.
+- **TypeScript**: Static typing for more robust development.
+- **Vite 7**: Fast next-generation frontend tooling.
+- **Tailwind CSS 4**: Modern utility-first styling with responsive design.
+- **Axios**: HTTP client for consuming API services.
+- **PostCSS**: CSS processing with Tailwind v4 integration.
 
-## React Compiler
+## 🛠️ Installation and Setup
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Follow these steps to run the project locally:
 
-## Expanding the ESLint configuration
+### 1. Clone the Repository
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/juliandebra/nimble-gravity-challenge.git
+cd nimble-gravity-challenge
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Environment Variables Configuration
+
+The project uses environment variables to handle sensitive data and configurations.
+
+- Create a `.env` file in the project root.
+- Copy the content from `.env.example` and fill in your details:
+
+```env
+VITE_CANDIDATE_EMAIL=your_email@example.com
+VITE_API_BASE_URL=https://challenge-api-url.com
+```
+
+> **Note**: The `.env` file is ignored by Git for security reasons.
+
+### 4. Run the Project
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`.
+
+## 📦 Available Scripts
+
+- `npm run dev`: Starts the development server with HMR.
+- `npm run build`: Builds the application for production.
+- `npm run preview`: Locally runs the production build.
+- `npm run lint`: Runs the linter to verify code quality.
+
+## ✨ UI Features
+
+- **Optimized Header**: Modern design with attractive gradients and animated badges.
+- **Candidate Cards**: Clear and concise information with automatic initial generation.
+- **Job Listings**: Cards with hover effects and visual loading feedback (skeletons).
+- **Responsive Design**: Fully adapted for mobile, tablet, and desktop devices.
