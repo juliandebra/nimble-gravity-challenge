@@ -17,9 +17,10 @@ function App() {
           import.meta.env.VITE_CANDIDATE_EMAIL,
         )
         setCandidate(data)
-      } catch (err: any) {
+      } catch (err) {
+        const error = err as { response?: { data?: { message?: string } } }
         setError(
-          err.response?.data?.message ||
+          error.response?.data?.message ||
             'Failed to load candidate information.',
         )
       } finally {

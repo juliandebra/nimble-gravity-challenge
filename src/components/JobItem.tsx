@@ -38,9 +38,10 @@ const JobItem: React.FC<JobItemProps> = ({ job, candidate }) => {
       } else {
         setError('Failed to apply. Please try again.')
       }
-    } catch (err: any) {
+    } catch (err) {
+      const error = err as { response?: { data?: { message?: string } } }
       setError(
-        err.response?.data?.message || 'An error occurred while applying.',
+        error.response?.data?.message || 'An error occurred while applying.',
       )
     } finally {
       setLoading(false)
@@ -49,7 +50,7 @@ const JobItem: React.FC<JobItemProps> = ({ job, candidate }) => {
 
   if (success) {
     return (
-      <div className='group relative bg-slate-800/40 border border-emerald-500/40 rounded-2xl p-6 flex flex-col gap-3 shadow-lg shadow-emerald-900/10'>
+      <div className='group relative bg-slate-800/40 border border-emerald-500/40 rounded-2xl p-6 flex flex-col gap-4 shadow-lg shadow-emerald-900/10'>
         <div className='flex items-center gap-3'>
           <div className='w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0'>
             <svg
@@ -66,12 +67,36 @@ const JobItem: React.FC<JobItemProps> = ({ job, candidate }) => {
               />
             </svg>
           </div>
-          <div>
-            <h3 className='font-semibold text-white text-sm'>{job.title}</h3>
+          <div className='flex-1 min-w-0'>
+            <h3 className='font-semibold text-white text-sm truncate'>
+              {job.title}
+            </h3>
             <p className='text-emerald-400 text-xs font-medium mt-0.5'>
-              Application submitted!
+              Application submitted successfully!
             </p>
           </div>
+        </div>
+
+        <div className='bg-slate-900/50 rounded-xl p-3 border border-slate-700/50'>
+          <p className='text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1'>
+            Submitted URL
+          </p>
+          <p className='text-xs text-slate-300 font-mono break-all line-clamp-1'>
+            {repoUrl}
+          </p>
+        </div>
+
+        <div className='flex flex-col gap-3'>
+          <p className='text-[11px] text-slate-400 leading-relaxed italic'>
+            Make a mistake? You can correct your repository URL by resubmitting
+            the application.
+          </p>
+          <button
+            onClick={() => setSuccess(false)}
+            className='w-full py-2 px-4 rounded-xl text-xs font-semibold text-white bg-slate-700 hover:bg-slate-600 transition-all border border-slate-600/50'
+          >
+            Edit Repository URL
+          </button>
         </div>
       </div>
     )
